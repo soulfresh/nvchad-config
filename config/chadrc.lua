@@ -1,3 +1,4 @@
+-- Use this file for overrides of NvChad/lua/core/default_config.lua
 local M = {}
 
 -- Path to overriding theme and highlights files
