@@ -13,6 +13,13 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
+    -- general
+    -- "codespell",
+    -- "misspell",
+    -- "commitlint",
+    -- TODO Only useful if it can fix issues for us
+    -- "editorconfig-checker",
+
     -- lua stuff
     "lua-language-server",
     "stylua",
@@ -21,7 +28,13 @@ M.mason = {
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
-    "deno",
+    -- "deno",
+    "prettierd",
+    -- "eslintd",
+    -- "fixjson",
+    -- "graphql-language-service-cli"
+    -- "stylelint-lsp",
+    -- "xo",
   },
 }
 
@@ -29,6 +42,13 @@ M.mason = {
 M.nvimtree = {
   git = {
     enable = true,
+  },
+
+  view = {
+    -- Resize the window on each draw based on the longest line.
+    adaptive_size = false,
+    -- If `false`, the height and width of windows other than nvim-tree will be equalized.
+    preserve_window_proportions = true,
   },
 
   renderer = {

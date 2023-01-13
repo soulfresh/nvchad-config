@@ -40,9 +40,11 @@ return {
       require "custom.plugins.null-ls"
     end,
   },
-
-  -- lookup and customize keymaps
-  ["folke/which-key.nvim"] = { disable = false }
+  
+  -- show keybindings for commands as you type
+  ["folke/which-key.nvim"] = {
+    disable = false,
+  },
 
   -- remove plugin
   -- ["hrsh7th/cmp-path"] = false,
