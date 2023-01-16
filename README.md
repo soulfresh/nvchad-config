@@ -54,6 +54,9 @@ plugin)
 - close all hidden buffers
 - checktime of open buffers when vim window regains focus
 - change zsh cursor to an insert cursor
+- only turn on line highlight for the current buffer
+- keymap to show the row and column highlight in a bright color so I can find
+the cursor
 
 Plugins:
 - split join

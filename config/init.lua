@@ -12,8 +12,8 @@ vim.g.mapleader = ","
 
 -- TODO Use NvChad correctly
 -- vim.cmd[[highlight ActiveWindow ctermbg=0 guibg=lightgrey]]
-vim.cmd[[highlight ActiveWindow guibg=#17252c]]
-vim.cmd[[highlight InactiveWindow guibg=#ff00ff]]
+-- vim.cmd[[highlight ActiveWindow guibg=#17252c]]
+-- vim.cmd[[highlight InactiveWindow guibg=#ff00ff]]
 
 -- Call method on window enter
 -- TODO Not working at the moment
@@ -24,9 +24,9 @@ vim.cmd[[highlight InactiveWindow guibg=#ff00ff]]
 -- })
 
 -- Change highlight group of preview window when open
-function SwapWindowBackground()
-  vim.w.winhighlight= "Normal:ActiveWindow,NormalNC:InactiveWindow"
-  -- if &previewwindow
-  --   setlocal winhighlight=Normal:MarkdownError
-  -- endif
-end
+-- function SwapWindowBackground()
+--   vim.w.winhighlight= "Normal:ActiveWindow,NormalNC:InactiveWindow"
+--   -- if &previewwindow
+--   --   setlocal winhighlight=Normal:MarkdownError
+--   -- endif
+-- end

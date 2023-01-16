@@ -1,4 +1,3 @@
-
 -- Neovide config
 vim.g.neovide_input_use_logo = true
 vim.g.neovide_fullscreen = true
@@ -9,9 +8,19 @@ vim.g.neovide_cursor_trail_size = 0.5
 
 -- turn off word wrap
 vim.opt.wrap = false
-vim.opt.winwidth = 80
 vim.opt.textwidth = 80
+vim.opt.winwidth = 80
+-- These crashed config loading
+-- vim.opt.winminwidth = 10
+-- vim.opt.winminheight = 10
+
+-- My favorite fonts.
+-- Download fronts via: https://github.com/ronniedroid/getnf
+-- Preview fonts via: https://www.programmingfonts.org/
 vim.opt.guifont = "FiraCode_Nerd_Font_Mono:h10"
+-- vim.opt.guifont = "FuraMono_Nerd_Font:h10"
+-- vim.opt.guifont = "Lilex_Nerd_Font:h10"
+-- vim.opt.guifont = "MesloGL_Nerd_Font:h10"
 
 -- Use this file for overrides of NvChad/lua/core/default_config.lua
 local M = {}

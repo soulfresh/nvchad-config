@@ -130,24 +130,88 @@ local function t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+-- Clear a termina buffer:
+-- ======================
+-- I've tried various version listed here:
+-- https://vi.stackexchange.com/questions/21260/how-to-clear-neovim-terminal-buffer
+-- The best I've found so far will clear everything except for 1 page worth of
+-- output.
+
+-- function ClearTerm(reset)
+--   vim.opt_local.scrollback = 1
+--   vim.api.nvim_command("startinsert")
+--   if reset == 1 then
+--     vim.api.nvim_feedkeys("reset", 't', false)
+--   else
+--     vim.api.nvim_feedkeys("clear", 't', false)
+--   end
+--   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<cr>', true, false, true), 't', true)
+--   vim.opt_local.scrollback = 10000
+-- end
+
+-- Stack overflo
+-- vim.api.nvim_set_keymap('t', '<C-l><C-l>', [[<C-\><C-N>:lua ClearTerm(0)<CR>]], mapping_opts)
+-- vim.api.nvim_set_keymap('t', '<C-l><C-l><C-l>', [[<C-\><C-N>:lua ClearTerm(1)<CR>]], mapping_opts)
+
 M.nvterm = {
+  -- TODO Figure out how to do this only if the current buffer is a terminal
+  n = {
+    ["<leader>cl"] = {
+      -- https://vi.stackexchange.com/questions/21260/how-to-clear-neovim-terminal-buffer
+      -- nmap <c-w><c-l> :set scrollback=1 \| sleep 100m \| set scrollback=10000<cr>
+      -- tmap <c-w><c-l> <c-\><c-n><c-w><c-l>i<c-l>
+      function()
+        if vim.bo.buftype == "terminal" then
+          vim.api.nvim_feedkeys('z\r', 'n', false)
+          vim.opt.scrollback = 1
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-l>', true, false, true), 't', true)
+          -- vim.api.nvim_feedkeys('<C-l>', 't', true)
+          vim.cmd('sleep 100m')
+          -- vim.api.nvim_feedkeys("<C-l><C-\\><C-N>", 'i', false)
+          -- vim.api.nvim_feedkeys(
+          --   vim.api.nvim_replace_termcodes(
+          --     "<C-l><C-\\><C-N>", true, false, true
+          --   ),
+          --   'i',
+          --   false
+          -- )
+          vim.opt.scrollback = 10000
+          -- vim.cmd('set scrollback=1')
+          -- vim.cmd('sleep 100m')
+          -- vim.cmd('set scrollback=10000')
+        end
+      end,
+      -- "<cmd>:set scrollback=1 | sleep 100m | set scrollback=10000<cr>",
+      -- ":set scrollback=1 \\| sleep 100m \\| set scrollback=10000<cr>",
+      "Clear terminal output"
+    }
+  --   ["<C-o>"] = {
+  --     function() ClearTerm() end,
+  --     "Clear terminal output"
+  --   },
+  },
+
   t = {
     -- navigation in/out of terminal mode
-    ["<Esc>"] = { "<C-\\><C-N>", "exit terminal mode"},
+    ["<Esc><Esc>"] = { "<C-\\><C-N>", "exit terminal mode"},
     ["<C-h>"] = { "<C-\\><C-N><C-w>h", "leave terminal left" },
     ["<C-j>"] = { "<C-\\><C-N><C-w>j", "leave terminal down" },
     ["<C-k>"] = { "<C-\\><C-N><C-w>k", "leave terminal up" },
-    ["<C-l>"] = { "<C-\\><C-N><C-w>l", "leave terminal right" },
 
-    -- always open vertical terminals on the left side of the screen
-    ["<A-v>"] = {
+    -- other
+    -- ["<C-o>"] = {
+    --   function() ClearTerm() end,
+    --   "Clear terminal output"
+    -- },
+    ["<M-l>"] = {
       function()
-        require("nvterm.terminal").toggle "vertical"
-        -- The following doesn't seem to work
-        vim.cmd(t('normal <Esc><C-w>h'))
+        vim.cmd('set scrollback=1')
+        vim.cmd('sleep 100m')
+        vim.cmd('set scrollback=10000')
       end,
-      "toggle vertical term",
-    },
+      -- ":set scrollback=1 \\| sleep 100m \\| set scrollback=10000<cr>",
+      "Clear terminal output"
+    }
   }
 }
 

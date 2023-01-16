@@ -1,8 +1,20 @@
 local overrides = require "custom.plugins.overrides"
 
 return {
+  -- To remove a default plugin:
+  -- ["hrsh7th/cmp-path"] = false,
 
-  -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
+  -- Telescope
+  ["nvim-telescope/telescope.nvim"] = {
+    override_options = {
+      extensions_list = { "themes", "terms", "projects" },
+    }
+  },
+
+  -- Startup dashboard plugin
+  ["goolord/alpha-nvim"] = {
+    disable = false,
+  },
 
   -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {
@@ -40,14 +52,35 @@ return {
       require "custom.plugins.null-ls"
     end,
   },
-  
+
   -- show keybindings for commands as you type
   ["folke/which-key.nvim"] = {
     disable = false,
   },
 
-  -- remove plugin
-  -- ["hrsh7th/cmp-path"] = false,
+  ["NvChad/nvterm"] = {
+    behavior = {
+      autoclose_on_quit = {
+        enabled = true,
+        confirm = true,
+      },
+      auto_insert = false,
+    },
+    autoclose_on_quit = {
+      enabled = true,
+      confirm = true,
+    },
+    auto_insert = false,
+  },
+
+  -- projects
+  ["ahmedkhalf/project.nvim"] = {
+    after = 'telescope.nvim',
+    config = function()
+      -- require('telescope').load_extension 'projects'
+      require("custom.plugins.project").setup()
+    end,
+  },
 }
 
 
