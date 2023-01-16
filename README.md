@@ -2,7 +2,8 @@
 
 ## Setup
 
-Run `./install.sh`
+For the easiest setup clone this repo and then run `./install.sh`. This command will clone NvChad alongside
+this repo, symlink NvChad into your `.config/nvim` folder and backup your existing nvim configs.
 
 All custom configuration is stored in the `config` folder and will be symlinked into NvChad.
 
@@ -11,10 +12,12 @@ All custom configuration is stored in the `config` folder and will be symlinked 
 
 ### Uninstall
 
-Run `./uninstall`
+Run `./uninstall` to remove the NvChad symlinks and restore any previous nvim setup you had. It will not
+remove the NvChad repo clone that was checked out along side this repo. You can do that if you want.
 
 ## TODO
 
+- Change git next/prev hunk command to also show the hunk diff
 - <Esc> in terminal conflicts with vimify in ZSH
 - <Enter> in insert mode doesn't indent correctly in JSX
 - TODO highlighting in JSX
