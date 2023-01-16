@@ -34,3 +34,11 @@ else
   echo "✅ ${GREEN}~/.config/nvim${NC} is not symlinked"
 fi
 
+# Remove NvChad
+if [ -d "$NVCHAD" ]
+then
+  echo "🚫 deleting ${GREEN}${NVCHAD}"
+  rm -rf $NVCHAD
+else
+  echo "✅ ${GREEN}${NVCHAD} is not present"
+fi

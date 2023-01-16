@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Pre-reqs
+brew install coreutils # realpath
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
@@ -8,16 +11,16 @@ NVIM_HOME="$(realpath ~)/.config/nvim"
 ROOT=$(realpath ../)
 CONFIG=$(realpath ./config)
 
-# clone NvChad along side this folder
+# Clone NvChad along side this folder
 if [ ! -d "../NvChad" ]
 then
   echo "🚗 cloning NvChad"
-  git clone https://github.com/NvChad/NvChad $ROOT --depth 1
+  git clone https://github.com/NvChad/NvChad $ROOT/NvChad --depth 1
 else
   echo "✅ NvChad already checked out"
 fi
 
-# symlink nvchad-config into NvChad/lua/custom
+# Symlink nvchad-config into NvChad/lua/custom
 if [ ! -d "../NvChad/lua/custom" ]
 then
   echo "🔗 Linking nvchad-config"
@@ -32,7 +35,7 @@ else
   fi
 fi
 
-# symlink NvChad into ~/.config/nvim
+# Symlink NvChad into ~/.config/nvim
 if [ -e "$NVIM_HOME" ]
 then
   if [ -L "$NVIM_HOME" ]

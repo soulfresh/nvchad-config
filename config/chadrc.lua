@@ -35,7 +35,7 @@ local highlights = require "custom.highlights"
 
 M.ui = {
   theme_toggle = { "onedark", "everforest_light" },
-  theme = "everforest_light",
+  theme = "aquarium",
   hl_override = highlights.override,
   hl_add = highlights.add,
 
