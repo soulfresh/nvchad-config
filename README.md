@@ -10,10 +10,15 @@ All custom configuration is stored in the `config` folder and will be symlinked 
 > Good to know: Nvim settings are stored separately from your Vim settings and
 > will not conflict.
 
+Run `nvim` to start NvChad.
+
 ### Uninstall
 
 Run `./uninstall` to remove the NvChad symlinks and restore any previous nvim setup you had. It will not
 remove the NvChad repo clone that was checked out along side this repo. You can do that if you want.
+
+## NerdFonts
+https://github.com/ronniedroid/getnf
 
 ## TODO
 
