@@ -11,14 +11,22 @@ vim.g.neovide_cursor_animation_length = 0.1
 vim.g.neovide_scroll_animation_length = 0.1
 vim.g.neovide_cursor_trail_size = 0.5
 
--- turn off word wrap
+-- Vim settings
 vim.opt.wrap = false
 vim.opt.textwidth = 80
 vim.opt.winwidth = 80
--- These crashed config loading
--- vim.opt.winminwidth = 10
--- vim.opt.winminheight = 10
+vim.opt.winminwidth = 10
+vim.opt.winheight = 10
+vim.opt.winminheight = 10
+-- keep x lines visible above and below cursor at all times
+vim.opt.scrolloff = 10
+-- keep x columns visible left and right of the cursor at all times
+vim.opt.sidescrolloff = 10
 
+-- TODO Update docs to talk about downloading fonts
+-- TODO Allow Tom to set his own fonts and theme
+-- TODO Fix the fact that toggling the theme changes this file which shows up in
+-- git.
 -- My favorite fonts.
 -- Download fronts via: https://github.com/ronniedroid/getnf
 -- Preview fonts via: https://www.programmingfonts.org/
@@ -35,7 +43,7 @@ local highlights = require "custom.highlights"
 
 M.ui = {
   theme_toggle = { "onedark", "everforest_light" },
-  theme = "everforest_light",
+  theme = "onedark",
   hl_override = highlights.override,
   hl_add = highlights.add,
 

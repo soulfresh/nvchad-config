@@ -26,7 +26,10 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
-    ["<leader>sv"] = { ":source $MYVIMRC<CR>", "reload nvim config" },
+    -- This doesn't work because lua caches modules. There is a way to unload
+    -- modules before loading them. This would also need to work with packer I
+    -- think.
+    -- ["<leader>sv"] = { ":source $MYVIMRC<CR>", "reload nvim config" },
 
     ["<leader>hi"] = {
       function()
@@ -112,9 +115,10 @@ M.lspconfig = {
 
 M.telescope = {
   n = {
-    ["<leader>t"] = { "<cmd> Telescope find_files <CR>", "Find files"},
+    ["<leader>fp"] = { "<cmd> Telescope projects <CR>", "Find projects"},
+    -- ["<leader>t"] = { "<cmd> Telescope find_files <CR>", "Find files"},
     -- ["<leader>t"] = { "<leader>ff", "Find files", { expr = true }},
-    ["<leader>b"] = { "<cmd> Telescope buffers", "Find buffers"},
+    -- ["<leader>b"] = { "<cmd> Telescope buffers", "Find buffers"},
     -- ["<leader>b"] = { "<leader>fb", "Find buffers", { expr = true }},
   }
 }
