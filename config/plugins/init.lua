@@ -6,15 +6,14 @@ return {
 
   -- Telescope
   ["nvim-telescope/telescope.nvim"] = {
+    -- TODO Do I need this?
     override_options = {
       extensions_list = { "themes", "terms", "projects" },
     }
   },
 
   -- Startup dashboard plugin
-  ["goolord/alpha-nvim"] = {
-    disable = false,
-  },
+  ["goolord/alpha-nvim"] = require "custom.plugins.alpha",
 
   -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {

@@ -2,6 +2,8 @@
 
 ## Setup
 
+TODO List out the NvChad prereqs here
+
 For the easiest setup clone this repo and then run `./install.sh`. This command will clone NvChad alongside
 this repo, symlink NvChad into your `.config/nvim` folder and backup your existing nvim configs.
 
@@ -11,6 +13,9 @@ All custom configuration is stored in the `config` folder and will be symlinked 
 > will not conflict.
 
 Run `nvim` to start NvChad.
+
+## NerdFonts
+https://github.com/ronniedroid/getnf
 
 ### Uninstall
 
@@ -30,39 +35,65 @@ Once installed run `getnf` and install the `FiraCode` font which is what
 we have set as the default in `config/chadrc.lua`. You can also set this in
 iTerm under Preferences -> Profile -> Text.
 
+## Plugins
+
+- [NvChad Plugins](https://nvchad.com/features)
+- [Projects](#projects)
+
+### Projects
+
+[ahmedkhalf/project.nvim](https://github.com/ahmedkhalf/project.nvim)
+
+- `[leader]fp` to open the project finder
+- [project key maps](https://github.com/ahmedkhalf/project.nvim#telescope-mappings)
+  are available inside the project finder window
+
+Projects are added by starting nvim (or calling `:cd path/to/project`) in any
+folder with a `.git` folder and then opening a code file. Additional project
+folder patterns can be configured in `config/plugins/project.lua`.
+
+> I've had some issues with projects showing up. Sometimes you need to open a
+> project folder multiple times before it's detected.
+
+## Configure
+
+Learn [Neovim configuration with lua](https://neovim.io/doc/user/lua-guide.html#lua-guide)
+
 ## TODO
 
+- [C-space] should close the autocomplete if it is open
 - Change git next/prev hunk command to also show the hunk diff
-- <Esc> in terminal conflicts with vimify in ZSH
-- <Enter> in insert mode doesn't indent correctly in JSX
+- [Esc] in terminal conflicts with vimify in ZSH
+- [Enter] in insert mode doesn't indent correctly in JSX
 - TODO highlighting in JSX
-- use Shift + j/k in place of <C-n>/<C-p>?
+- use Shift + j/k in place of [C-n]/[C-p]?
 - use Shift + h/l in place of $/0? If so remove the key switching config I put
 in
-- scroll to left/right edge without moving cursor
+- scroll to left/right edge without moving cursor in normal and insert modes
+- scroll up/down by 5 lines without moving cursor in normal and insert modes
 - navigate up/down by 10 lines
 - navigate back/forward inside camel case words
-- <leader>] doesn't seem to work
+- [leader]] doesn't seem to work
 - surround plugin (ex: cs')
-- hide autocomplete with escape or <C-c>
+- hide autocomplete with escape or [C-c]
 - hide floating error text (show on hover)
 - re-paste last pasted content
 - keybindng to jump to beginning of line
 - prettier/eslint 
 - show file name at top or bottom of each window
-- Tmux <C-HJKL> integeration (Temporary?)
+- Tmux [C-HJKL] integeration (Temporary?)
 - keymap to clear terminal scrollback
-- keymap for <Up> <Down> in terminal (<D-Up/Down>?)
-- <leader>b last buffer
+- keymap for [Up] [Down] in terminal ([D-Up/Down]?)
+- [leader]b last buffer
 - s keymap for :w
 - sa keymap for :wa
 - Different minwidth for terminal windows
 - color border or background of focused window
   https://github.com/blueyed/vim-diminactive
-- <leader>b to go back to previous buffer
+- [leader]b to go back to previous buffer
 - prevent terminal window from entering terminal mode when the cursor enters it?
 - Esc to exit lsp.hover modal (ie. KK will open hover and focus it but it's hard
-to exit...use <C-J>)
+to exit...use [C-J])
 - keymap to jump to open terminal if there is one
 - open url:
 https://stackoverflow.com/questions/68694479/how-do-i-open-a-link-in-google-chrome-in-lua-for-neovim
@@ -87,7 +118,7 @@ Plugins:
 ### New things to add
 
 - terminal autocomplete
-- comment function by typing <leader>/ inside the body of the function
+- comment function by typing [leader]/ inside the body of the function
 - keymap to show time in big letters
 - plugin to flash the screen when a calendar event happens
 - Alt and Cmd backspace/delete to delete full words?
