@@ -18,7 +18,17 @@ Run `./uninstall` to remove the NvChad symlinks and restore any previous nvim se
 remove the NvChad repo clone that was checked out along side this repo. You can do that if you want.
 
 ## NerdFonts
+This gives us fonts and icons that work with vim. Without this you will see a
+lot of broken icons in vim.
+
 https://github.com/ronniedroid/getnf
+
+For me this was installed into ~/.local/bin which wasn't showing up in my bash.
+So I added that folder as a PATH in my .zshrc file.
+
+Once installed run `getnf` and install the `FiraCode` font which is what
+we have set as the default in `config/chadrc.lua`. You can also set this in
+iTerm under Preferences -> Profile -> Text.
 
 ## TODO
 
