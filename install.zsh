@@ -2,7 +2,7 @@
 
 # Pre-reqs
 brew install coreutils # realpath
-brew install ripgrep
+brew install ripgrep # grep searching with Telescope.
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
