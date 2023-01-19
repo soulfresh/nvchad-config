@@ -4,6 +4,8 @@ local autogrp = vim.api.nvim_create_augroup
 
 vim.g.mapleader = ","
 
+vim.opt.whichwrap = "b,s"
+
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {
 --   pattern = "*",
