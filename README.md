@@ -7,6 +7,11 @@ TODO List out the NvChad prereqs here
 For the easiest setup clone this repo and then run `./install.sh`. This command will clone NvChad alongside
 this repo, symlink NvChad into your `.config/nvim` folder and backup your existing nvim configs.
 
+Once installed, copy `config/chadrc.lua.example` to `config/chadrc.lua` so you
+can further customize your setup:
+
+`cp config/chadrc.lua.example config/chadrc.lua`
+
 All custom configuration is stored in the `config` folder and will be symlinked into NvChad.
 
 > Good to know: Nvim settings are stored separately from your Vim settings and
