@@ -11,6 +11,9 @@ NVIM_HOME="$(realpath ~)/.config/nvim"
 ROOT=$(realpath ../)
 CONFIG=$(realpath ./config)
 
+# Copy chadrc.lua.template to chadrc.lua
+cp ./config/chadrc.lua.template ./config/chadrc.lua
+
 # Clone NvChad along side this folder
 if [ ! -d "../NvChad" ]
 then
