@@ -44,7 +44,8 @@ folder patterns can be configured in `config/plugins/project.lua`.
 
 ## Configure
 
-Learn [Neovim configuration with lua](https://neovim.io/doc/user/lua-guide.html#lua-guide)
+- A good overview of [lua config with Neovim](https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/)
+- The official [Neovim configuration with lua guide](https://neovim.io/doc/user/lua-guide.html#lua-guide)
 
 ## TODO
 

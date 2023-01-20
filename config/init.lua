@@ -2,7 +2,10 @@
 local autocmd = vim.api.nvim_create_autocmd
 local autogrp = vim.api.nvim_create_augroup
 
+-- Override NvChad settings
 vim.g.mapleader = ","
+-- put cursor wrapping back to the vim defaults
+vim.opt.whichwrap = "b,s"
 
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {

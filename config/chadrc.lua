@@ -35,6 +35,10 @@ vim.opt.guifont = "FiraCode_Nerd_Font_Mono:h10"
 -- vim.opt.guifont = "Lilex_Nerd_Font:h10"
 -- vim.opt.guifont = "MesloGL_Nerd_Font:h10"
 
+-- Snippets path relative to $MYVIMRC. You can use ~/ prefixed paths.
+-- See https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#loaders
+vim.g.luasnippets_path = "~/.config/nvim/lua/custom/snippets"
+
 -- Use this file for overrides of NvChad/lua/core/default_config.lua
 local M = {}
 
@@ -43,7 +47,7 @@ local highlights = require "custom.highlights"
 
 M.ui = {
   theme_toggle = { "onedark", "everforest_light" },
-  theme = "onedark",
+  theme = "everforest_light",
   hl_override = highlights.override,
   hl_add = highlights.add,
 
