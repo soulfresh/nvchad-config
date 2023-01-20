@@ -23,40 +23,11 @@ vim.opt.scrolloff = 10
 -- keep x columns visible left and right of the cursor at all times
 vim.opt.sidescrolloff = 10
 
--- TODO Update docs to talk about downloading fonts
--- TODO Allow Tom to set his own fonts and theme
--- TODO Fix the fact that toggling the theme changes this file which shows up in
--- git.
--- My favorite fonts.
--- Download fronts via: https://github.com/ronniedroid/getnf
--- Preview fonts via: https://www.programmingfonts.org/
-vim.opt.guifont = "FiraCode_Nerd_Font_Mono:h10"
--- vim.opt.guifont = "FuraMono_Nerd_Font:h10"
--- vim.opt.guifont = "Lilex_Nerd_Font:h10"
--- vim.opt.guifont = "MesloGL_Nerd_Font:h10"
+-- Override NvChad settings
+vim.g.mapleader = ","
+-- put cursor wrapping back to the vim defaults
+vim.opt.whichwrap = "b,s"
 
 -- Snippets path relative to $MYVIMRC. You can use ~/ prefixed paths.
 -- See https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#loaders
 vim.g.luasnippets_path = "~/.config/nvim/lua/custom/snippets"
-
--- Use this file for overrides of NvChad/lua/core/default_config.lua
-local M = {}
-
--- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
-
-M.ui = {
-  theme_toggle = { "onedark", "everforest_light" },
-  theme = "everforest_light",
-  hl_override = highlights.override,
-  hl_add = highlights.add,
-
-  transparency = false,
-}
-
-M.plugins = require "custom.plugins"
-
--- check core.mappings for table structure
-M.mappings = require "custom.mappings"
-
-return M
