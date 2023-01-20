@@ -7,6 +7,11 @@ TODO List out the NvChad prereqs here
 For the easiest setup clone this repo and then run `./install.sh`. This command will clone NvChad alongside
 this repo, symlink NvChad into your `.config/nvim` folder and backup your existing nvim configs.
 
+Once installed, copy `config/chadrc.lua.example` to `config/chadrc.lua` so you
+can further customize your setup:
+
+`cp config/chadrc.lua.example config/chadrc.lua`
+
 All custom configuration is stored in the `config` folder and will be symlinked into NvChad.
 
 > Good to know: Nvim settings are stored separately from your Vim settings and
@@ -21,6 +26,23 @@ https://github.com/ronniedroid/getnf
 
 Run `./uninstall` to remove the NvChad symlinks and restore any previous nvim setup you had. It will not
 remove the NvChad repo clone that was checked out along side this repo. You can do that if you want.
+
+## Github Copilot
+https://github.com/github/copilot.vim - This works after adding `vim.g.copilot_assume_mapped = true` to `config/init.lua`
+https://github.com/zbirenbaum/copilot.lua - Havent tried this but it exists.
+
+## NerdFonts
+This gives us fonts and icons that work with vim. Without this you will see a
+lot of broken icons in vim.
+
+https://github.com/ronniedroid/getnf
+
+For me this was installed into ~/.local/bin which wasn't showing up in my bash.
+So I added that folder as a PATH in my .zshrc file.
+
+Once installed run `getnf` and install the `FiraCode` font which is what
+we have set as the default in `config/chadrc.lua`. You can also set this in
+iTerm under Preferences -> Profile -> Text.
 
 ## Plugins
 
