@@ -27,6 +27,10 @@ https://github.com/ronniedroid/getnf
 Run `./uninstall` to remove the NvChad symlinks and restore any previous nvim setup you had. It will not
 remove the NvChad repo clone that was checked out along side this repo. You can do that if you want.
 
+## Github Copilot
+https://github.com/github/copilot.vim - This works after adding `vim.g.copilot_assume_mapped = true` to `config/init.lua`
+https://github.com/zbirenbaum/copilot.lua - Havent tried this but it exists.
+
 ## NerdFonts
 This gives us fonts and icons that work with vim. Without this you will see a
 lot of broken icons in vim.

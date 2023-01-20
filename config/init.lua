@@ -3,6 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local autogrp = vim.api.nvim_create_augroup
 
 vim.g.mapleader = ","
+vim.g.copilot_assume_mapped = true
 
 vim.opt.whichwrap = "b,s"
 
