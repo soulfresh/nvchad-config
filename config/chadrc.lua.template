@@ -1,0 +1,29 @@
+-- Font customizations: 
+-- Download fronts via: https://github.com/ronniedroid/getnf
+-- Preview fonts via: https://www.programmingfonts.org/
+vim.opt.guifont = "FiraCode_Nerd_Font_Mono:h10"
+-- vim.opt.guifont = "FuraMono_Nerd_Font:h10"
+-- vim.opt.guifont = "Lilex_Nerd_Font:h10"
+-- vim.opt.guifont = "MesloGL_Nerd_Font:h10"
+
+-- Use this file for overrides of NvChad/lua/core/default_config.lua
+local M = {}
+
+-- Path to overriding theme and highlights files
+local highlights = require "custom.highlights"
+
+M.ui = {
+  theme_toggle = { "onedark", "everforest_light" },
+  theme = "everforest_light",
+  hl_override = highlights.override,
+  hl_add = highlights.add,
+
+  transparency = false,
+}
+
+M.plugins = require "custom.plugins"
+
+-- check core.mappings for table structure
+M.mappings = require "custom.mappings"
+
+return M

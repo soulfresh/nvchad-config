@@ -15,12 +15,13 @@ function GetHighlightGroupUnderCursor()
 end
 
 -- add this table only when you want to disable default keys
--- M.disabled = {
---   n = {
---       ["<leader>h"] = "",
---       ["<C-s>"] = ""
---   }
--- }
+M.disabled = {
+  n = {
+    -- This seems to be a typo in the NvChad config but I'm not sure.
+    -- I prefer ]d and [d
+    ["d]"] = "",
+  }
+}
 
 M.general = {
   n = {
@@ -110,6 +111,13 @@ M.lspconfig = {
       end,
       "floating diagnostic",
     },
+
+    ["]d"] = {
+      function()
+        vim.diagnostic.goto_prev()
+      end,
+      "goto prev",
+    }
   },
 }
 
@@ -167,6 +175,8 @@ M.nvterm = {
       function()
         if vim.bo.buftype == "terminal" then
           vim.api.nvim_feedkeys('z\r', 'n', false)
+          -- TODO Try to get the current scrollback so we can reset to that
+          -- local scrollback = vim.b.scrollback
           vim.opt.scrollback = 1
           vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-l>', true, false, true), 't', true)
           -- vim.api.nvim_feedkeys('<C-l>', 't', true)

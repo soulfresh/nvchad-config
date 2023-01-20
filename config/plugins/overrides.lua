@@ -46,7 +46,7 @@ M.nvimtree = {
 
   view = {
     -- Resize the window on each draw based on the longest line.
-    adaptive_size = false,
+    -- adaptive_size = false,
     -- If `false`, the height and width of windows other than nvim-tree will be equalized.
     preserve_window_proportions = true,
   },
