@@ -32,11 +32,11 @@ M.general = {
     -- think.
     -- ["<leader>sv"] = { ":source $MYVIMRC<CR>", "reload nvim config" },
 
-    ["<leader>hi"] = {
+    ["<leader>si"] = {
       function()
         GetHighlightGroupUnderCursor()
       end,
-      "Print the highlight group name under the cursor."
+      "Show Highlight: show the highlight group name under the cursor."
     },
 
     -- Zoom
@@ -114,7 +114,7 @@ M.lspconfig = {
 
     ["]d"] = {
       function()
-        vim.diagnostic.goto_prev()
+        vim.diagnostic.goto_next()
       end,
       "goto prev",
     }
@@ -124,10 +124,9 @@ M.lspconfig = {
 M.telescope = {
   n = {
     ["<leader>fp"] = { "<cmd> Telescope projects <CR>", "Find projects"},
-    -- ["<leader>t"] = { "<cmd> Telescope find_files <CR>", "Find files"},
-    -- ["<leader>t"] = { "<leader>ff", "Find files", { expr = true }},
-    -- ["<leader>b"] = { "<cmd> Telescope buffers", "Find buffers"},
-    -- ["<leader>b"] = { "<leader>fb", "Find buffers", { expr = true }},
+    ["<leader>gf"] = { "<cmd> Telescope git_bcommits <CR>", "Git file history"},
+    ["<leader>gr"] = { "<cmd> Telescope git_branches <CR>", "Git branches"},
+    ["<leader>ga"] = { "<cmd> Telescope git_stash <CR>", "Git stashes"},
   }
 }
 
@@ -135,6 +134,46 @@ M.vimtree = {
   n = {
     -- TODO Remove C-n?
     ["<C-\\>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+  }
+}
+
+M.gitsigns = {
+  n = {
+    ["]c"] = {
+      function()
+        if vim.wo.diff then
+          return "]c"
+        end
+        vim.schedule(function()
+          local gs = require("gitsigns")
+          gs.next_hunk({preview = true})
+        end)
+        return "<Ignore>"
+      end,
+      "Jump to next hunk",
+      opts = { expr = true },
+    },
+
+    ["[c"] = {
+      function()
+        if vim.wo.diff then
+          return "[c"
+        end
+        vim.schedule(function()
+          local gs = require("gitsigns")
+          gs.prev_hunk({preview = true})
+        end)
+        return "<Ignore>"
+      end,
+      "Jump to prev hunk",
+      opts = { expr = true },
+    },
+  }
+}
+
+M.neogit = {
+  n = {
+    ["<leader>gg"] = { "<cmd> Neogit <CR>", "Open Neogit Tab" },
   }
 }
 
@@ -229,6 +268,33 @@ M.nvterm = {
   }
 }
 
--- more keybinds!
+-- Toggle the current Git status in a Diff Viewer tab.
+vim.api.nvim_create_user_command("DiffviewToggleStatus", function(e)
+  local view = require("diffview.lib").get_current_view()
+
+  if view then
+    vim.cmd("DiffviewClose")
+  else
+    vim.cmd("DiffviewOpen " .. e.args)
+  end
+end, { nargs = "*" })
+
+-- Toggle the current branch history in a Diff Viewer tab.
+vim.api.nvim_create_user_command("DiffviewToggleHistory", function(e)
+  local view = require("diffview.lib").get_current_view()
+
+  if view then
+    vim.cmd("DiffviewClose")
+  else
+    vim.cmd("DiffviewFileHistory " .. e.args)
+  end
+end, { nargs = "*" })
+
+M.diffview = {
+  n = {
+    ['<leader>gs'] = { "<cmd> DiffviewToggleStatus <cr>", "Toggle the Git status view"},
+    ['<leader>gh'] = { "<cmd> DiffviewToggleHistory <cr>", "Toggle the Git history view"},
+  }
+}
 
 return M

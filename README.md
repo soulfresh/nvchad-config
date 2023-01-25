@@ -27,10 +27,6 @@ https://github.com/ronniedroid/getnf
 Run `./uninstall` to remove the NvChad symlinks and restore any previous nvim setup you had. It will not
 remove the NvChad repo clone that was checked out along side this repo. You can do that if you want.
 
-## Github Copilot
-https://github.com/github/copilot.vim - This works after adding `vim.g.copilot_assume_mapped = true` to `config/init.lua`
-https://github.com/zbirenbaum/copilot.lua - Havent tried this but it exists.
-
 ## NerdFonts
 This gives us fonts and icons that work with vim. Without this you will see a
 lot of broken icons in vim.
@@ -44,10 +40,18 @@ Once installed run `getnf` and install the `FiraCode` font which is what
 we have set as the default in `config/chadrc.lua`. You can also set this in
 iTerm under Preferences -> Profile -> Text.
 
+## Keymaps
+
+- `<leader>tk` Search for a keymap
+
 ## Plugins
 
 - [NvChad Plugins](https://nvchad.com/features)
 - [Projects](#projects)
+
+### Navigation
+
+- `<leader>cc` Jump to the top of the current indent level
 
 ### Projects
 
@@ -63,6 +67,43 @@ folder patterns can be configured in `config/plugins/project.lua`.
 
 > I've had some issues with projects showing up. Sometimes you need to open a
 > project folder multiple times before it's detected.
+
+### Git
+
+#### [GitDiff](https://github.com/sindrets/diffview.nvim)
+
+GitSigns shows you the removed/added/staged hunks in files, nvim tree and the
+status line. You can browse the git hunks in a file with 
+
+- `<leader>cm` Git commits in Telescope 
+- `<leader>gt` Git status in Telescope
+- `]c` Go to next Git hunk
+- `[c` Go to previous Git hunk
+
+In addition to the 
+plugin, you also have access to [GitDiff](https://github.com/sindrets/diffview.nvim)
+which allows you to view Git diffs of your working tree or history. Diffs are
+opened in a new tab. Use `<leader>gs` (Git Status) to toggle the diff view of
+your current working tree. See `h: diffview` for documentation.
+
+### Github Copilot
+https://github.com/github/copilot.vim - This works after adding `vim.g.copilot_assume_mapped = true` to `config/init.lua`
+https://github.com/zbirenbaum/copilot.lua - Havent tried this but it exists.
+
+### Snippets
+
+Snippet functionality is provided by [luasnip](https://github.com/L3MON4D3/LuaSnip)
+with [friendly snippets](https://github.com/rafamadriz/friendly-snippets)
+installed as well. Additionally, you can add your own snippets by adding snippet
+JSON files in the `snippets` folder. Snippets must be VSCode snippet format and
+the files must be named `{filetype}.json` and be valid JSON. If your snippets
+aren't loading, it's because there are JSON format issues or your snippet
+definitions don't match the VSCode snippet format. To easily create new
+snippets, you can use [this online snippet generator](https://snippet-generator.app/)
+
+To use snippets, try typing "aptreactfunc" in a typescript file, select the
+snippet in the autocomplete, type a name for your component, type `<TAB>` to
+move to the next edit location, repeat...
 
 ## Configure
 
@@ -116,6 +157,7 @@ plugin)
 - only turn on line highlight for the current buffer
 - keymap to show the row and column highlight in a bright color so I can find
 the cursor
+- close GitSigns preview window with [Esc]. See https://github.com/lewis6991/gitsigns.nvim/issues/385
 
 Plugins:
 - split join
@@ -158,7 +200,14 @@ Plugins:
 
 ## Project wide Search and Replace
 
-https://github.com/nvim-lua/wishlist/issues/18#issuecomment-812092951
+To perform a project wide search and replace...
+
+- `<leader>fw` to search the project for the text you want to replace
+- `[Ctrl-q]` to move the search results to the quickfix window
+- type `cdo s/{SEARCH_TEXT}/{REPLACEMENT_TEXT}/g` or (use `/gc` to manually
+  approve each change)
+
+See https://github.com/nvim-lua/wishlist/issues/18#issuecomment-812092951
 
 ## Useful Key Bindings
 

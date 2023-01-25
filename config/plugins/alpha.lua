@@ -33,13 +33,13 @@ M.disable = false
 M.override_options = {
   buttons = {
     val = {
-      button("SPC f p", "  Projects  ", ":Telescope projects<CR>"),
-      button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
-      button("SPC f o", "  Recent File  ", ":Telescope oldfiles<CR>"),
-      button("SPC f w", "  Find Word  ", ":Telescope live_grep<CR>"),
-      button("SPC b m", "  Bookmarks  ", ":Telescope marks<CR>"),
-      button("SPC t h", "  Themes  ", ":Telescope themes<CR>"),
-      button("SPC e s", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
+      button(",fp", "  Projects  ", ":Telescope projects<CR>"),
+      button(",ff", "  Find File  ", ":Telescope find_files<CR>"),
+      button(",fo", "  Recent File  ", ":Telescope oldfiles<CR>"),
+      button(",fw", "  Find Word  ", ":Telescope live_grep<CR>"),
+      button(",bm", "  Bookmarks  ", ":Telescope marks<CR>"),
+      button(",th", "  Themes  ", ":Telescope themes<CR>"),
+      button(",se", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
     }
   }
 }
