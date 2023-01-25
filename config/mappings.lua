@@ -205,8 +205,14 @@ end
 -- vim.api.nvim_set_keymap('t', '<C-l><C-l><C-l>', [[<C-\><C-N>:lua ClearTerm(1)<CR>]], mapping_opts)
 
 M.nvterm = {
-  -- TODO Figure out how to do this only if the current buffer is a terminal
   n = {
+    ["<leader>i"] = {
+      function()
+        require("nvterm.terminal").toggle "float"
+      end,
+      "toggle floating term",
+    },
+
     ["<leader>cl"] = {
       -- https://vi.stackexchange.com/questions/21260/how-to-clear-neovim-terminal-buffer
       -- nmap <c-w><c-l> :set scrollback=1 \| sleep 100m \| set scrollback=10000<cr>
@@ -238,10 +244,6 @@ M.nvterm = {
       -- ":set scrollback=1 \\| sleep 100m \\| set scrollback=10000<cr>",
       "Clear terminal output"
     }
-  --   ["<C-o>"] = {
-  --     function() ClearTerm() end,
-  --     "Clear terminal output"
-  --   },
   },
 
   t = {
@@ -251,11 +253,6 @@ M.nvterm = {
     ["<C-j>"] = { "<C-\\><C-N><C-w>j", "leave terminal down" },
     ["<C-k>"] = { "<C-\\><C-N><C-w>k", "leave terminal up" },
 
-    -- other
-    -- ["<C-o>"] = {
-    --   function() ClearTerm() end,
-    --   "Clear terminal output"
-    -- },
     ["<M-l>"] = {
       function()
         vim.cmd('set scrollback=1')
