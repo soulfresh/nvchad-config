@@ -28,13 +28,13 @@ local config = {
 
   -- When set to false, you will get a message when project.nvim changes your
   -- directory.
-  silent_chdir = true,
+  silent_chdir = false,
 
   -- What scope to change the directory, valid options are
   -- * global (default)
   -- * tab
   -- * win
-  scope_chdir = 'global',
+  scope_chdir = 'tab',
 
   -- Path where project.nvim will store the project history for use in
   -- telescope

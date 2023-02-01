@@ -53,13 +53,15 @@ iTerm under Preferences -> Profile -> Text.
 
 - `<leader>cc` Jump to the top of the current indent level
 
-### Projects
+### Working with Projects
 
 [ahmedkhalf/project.nvim](https://github.com/ahmedkhalf/project.nvim)
 
-- `[leader]fp` to open the project finder
-- [project key maps](https://github.com/ahmedkhalf/project.nvim#telescope-mappings)
-  are available inside the project finder window
+From the start page, you move to the Projects line and type `<CR>` (or type
+`<leader>se` for settings). This will open Telescope with a list of your
+previously opened projects. Select a project from the list (`<C-n/p><CR>`) and
+then search for a file to open and select it with `<CR>`. Now your current
+working directory is the project root.
 
 Projects are added by starting nvim (or calling `:cd path/to/project`) in any
 folder with a `.git` folder and then opening a code file. Additional project
@@ -68,23 +70,80 @@ folder patterns can be configured in `config/plugins/project.lua`.
 > I've had some issues with projects showing up. Sometimes you need to open a
 > project folder multiple times before it's detected.
 
-### Git
+- `<leader>fp` to open the project finder
+- [project key maps](https://github.com/ahmedkhalf/project.nvim#telescope-mappings)
+  are available inside the project finder window
 
-#### [GitDiff](https://github.com/sindrets/diffview.nvim)
+### Working with the autocomplete
 
-GitSigns shows you the removed/added/staged hunks in files, nvim tree and the
-status line. You can browse the git hunks in a file with 
+- [Nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+  The generic autocomplete popup that opens as you type. See `h: nvim-cmp` for
+  help.
+- [copilot.lua](https://github.com/zbirenbaum/copilot.lua)
+  Copilot plugin written in lua for better performance. See GitHub page for
+  help.
 
-- `<leader>cm` Git commits in Telescope 
+When in insert mode, you should get an autocomplete menu. Use `<C-space>` in
+insert mode to open or close the dialog. When the dialog is open, use `<C-n/p>`
+to navigate to the next/previous items. You will also see Copilot suggestions
+written as ghost text after your cursor which you can accept using `<Tab>` (in
+insert mode).
+
+If you select an item marked "Snippet" in the autocomplete, it will populate the
+snippet code for you and place you in the first edit location for that snippet.
+You can now type some text and then type `<Tab>` to move to the next edit
+location. Repeat until there are no more edit locations.
+
+> NOTE: I've noticed a couple bugs in our current implementation.
+> - If the copilot suggestion is show before the autocomplete, you can't toggle
+>   the autocomplete window.
+> - If the documentation window is open, you cannot `Tab` complete a copilot
+>   suggestion.
+> - Copilot suggestions and snippet navigation sometimes conflict. We should
+>   disable copilot while we are in a snippet.
+
+### Working with Git
+
+- [GitSigns](https://github.com/lewis6991/gitsigns.nvim)
+  Shows you the removed/added/staged hunks within your open buffers, nvim tree and the status line.
+  Try `:Gitsigns <TAB>` to view the available commands or `h: Gitsigns` for
+  help.
+- [GitDiff](https://github.com/sindrets/diffview.nvim)
+  A diff viewer for Git staging and navigationg the Git history.
+  Try `:Diffview<TAB>` to view available commands or `h: Diffivew` for help.
+- [NeoGit](https://github.com/TimUntersberger/neogit)
+  An easy UI for performing Git commands. Visit GitHub for help.
+
+When working in a file, the number column will show you unstaged file changes
+with a colored bar. Type `]c` and `[c` to navigate between changes in the file. You
+can stage/unstage changes with `<leader>cs` (Commits Stage) and the left column color
+will be removed. You can also quickly show a diff of the unstaged lines with
+`<leader>cd` (Commits Diff). Or you can toggle an inline view of all unstaged
+changes with `<leader>ch` (Commits Highlight).
+
+You can quickly review your current Git changes in a floating window by pressing
+`<leader>gt` (Git Telescope). Use `<C-n/p>` to show the diff of the next/previous file. Use
+`<C-d/u>` to scroll the preview window up/down. Use `?` to show Telescope key
+commands at the bottom of the screen.
+
+For a more complete staging experience, you can use `<leader>gs` (Git Stage) to
+open a new tab with a diff view of the current Git state. Use `j/k` to
+navigate between files and `<CR>` to show the diff for the selected file. The
+Gitsigns commands work in the diff buffers as well so you can jump between
+hunks, stage them, etc.
+
+#### Cheatsheat
+
 - `<leader>gt` Git status in Telescope
 - `]c` Go to next Git hunk
 - `[c` Go to previous Git hunk
-
-In addition to the 
-plugin, you also have access to [GitDiff](https://github.com/sindrets/diffview.nvim)
-which allows you to view Git diffs of your working tree or history. Diffs are
-opened in a new tab. Use `<leader>gs` (Git Status) to toggle the diff view of
-your current working tree. See `h: diffview` for documentation.
+- `<leader>cs` Stage hunk under cursor
+- `<leader>ch` Show inline git changes
+- `<leader>td` Show file diff
+- `<leader>gs` Show the project wide git changes
+- `<leader>gg` Git GUI
+- `<leader>cm` Browse Git commits in Telescope 
+- `<leader>gh` View detailed Git history in a tab
 
 ### Github Copilot
 https://github.com/github/copilot.vim - This works after adding `vim.g.copilot_assume_mapped = true` to `config/init.lua`
@@ -110,70 +169,6 @@ move to the next edit location, repeat...
 - A good overview of [lua config with Neovim](https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/)
 - The official [Neovim configuration with lua guide](https://neovim.io/doc/user/lua-guide.html#lua-guide)
 
-## TODO
-
-- [C-space] should close the autocomplete if it is open
-- Change git next/prev hunk command to also show the hunk diff
-- [Esc] in terminal conflicts with vimify in ZSH
-- [Enter] in insert mode doesn't indent correctly in JSX
-- TODO highlighting in JSX
-- use Shift + j/k in place of [C-n]/[C-p]?
-- use Shift + h/l in place of $/0? If so remove the key switching config I put
-in
-- scroll to left/right edge without moving cursor in normal and insert modes
-- scroll up/down by 5 lines without moving cursor in normal and insert modes
-- navigate up/down by 10 lines
-- navigate back/forward inside camel case words
-- [leader]] doesn't seem to work
-- surround plugin (ex: cs')
-- hide autocomplete with escape or [C-c]
-- hide floating error text (show on hover)
-- re-paste last pasted content
-- keybindng to jump to beginning of line
-- prettier/eslint 
-- show file name at top or bottom of each window
-- Tmux [C-HJKL] integeration (Temporary?)
-- keymap to clear terminal scrollback
-- keymap for [Up] [Down] in terminal ([D-Up/Down]?)
-- [leader]b last buffer
-- s keymap for :w
-- sa keymap for :wa
-- Different minwidth for terminal windows
-- color border or background of focused window
-  https://github.com/blueyed/vim-diminactive
-- [leader]b to go back to previous buffer
-- prevent terminal window from entering terminal mode when the cursor enters it?
-- Esc to exit lsp.hover modal (ie. KK will open hover and focus it but it's hard
-to exit...use [C-J])
-- keymap to jump to open terminal if there is one
-- open url:
-https://stackoverflow.com/questions/68694479/how-do-i-open-a-link-in-google-chrome-in-lua-for-neovim
-- colorize console log statements in jest output (or maybe just use a jest
-plugin)
-- autocomplete suggestions should prioritize fields first
-- close all hidden buffers
-- checktime of open buffers when vim window regains focus
-- change zsh cursor to an insert cursor
-- only turn on line highlight for the current buffer
-- keymap to show the row and column highlight in a bright color so I can find
-the cursor
-- close GitSigns preview window with [Esc]. See https://github.com/lewis6991/gitsigns.nvim/issues/385
-
-Plugins:
-- split join
-- surround
-- Gundo
-- Taboo?
-- jest.nvim?
-- system status graph
-
-### New things to add
-
-- terminal autocomplete
-- comment function by typing [leader]/ inside the body of the function
-- keymap to show time in big letters
-- plugin to flash the screen when a calendar event happens
-- Alt and Cmd backspace/delete to delete full words?
 
 ### Neovide
 
@@ -195,6 +190,7 @@ Plugins:
 
 - Read about the [plugins that come with NvChad](https://github.com/NvChad/NvChad)
 - Read the default key mappings provided in `NvChad/lua/core/mappings.lua`
+- [Getting started with NeoVim](https://bryankegley.me/posts/nvim-getting-started/)
 - Learn how to [customize NvChad](https://nvchad.com/config/Walkthrough)
 - Learn how to customize [NeoVim options with lua](https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/)
 
@@ -203,7 +199,7 @@ Plugins:
 To perform a project wide search and replace...
 
 - `<leader>fw` to search the project for the text you want to replace
-- `[Ctrl-q]` to move the search results to the quickfix window
+- `<Ctrl-q>` to move the search results to the quickfix window
 - type `cdo s/{SEARCH_TEXT}/{REPLACEMENT_TEXT}/g` or (use `/gc` to manually
   approve each change)
 

@@ -139,6 +139,18 @@ M.vimtree = {
 
 M.gitsigns = {
   n = {
+    ["<leader>cs"] = { "<cmd> Gitsigns stage_hunk <CR>", "Commits Stage: stage hunk at cursor" },
+    ["<leader>ch"] = {
+      function()
+        local gs = require('gitsigns')
+        gs.toggle_deleted(nil)
+        gs.toggle_word_diff(nil)
+        gs.toggle_linehl(nil)
+        gs.toggle_numhl(nil)
+      end,
+      "Commits Highlight: color the git changes in a file."
+    },
+    ["<leader>cd"] = { "<cmd> Gitsigns diffthis <CR>", "Commits Diff: diff unstaged lines"},
     ["]c"] = {
       function()
         if vim.wo.diff then
