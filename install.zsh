@@ -1,8 +1,10 @@
 #!/bin/sh
 
 # Pre-reqs
+brew install neovim
 brew install coreutils # realpath
 brew install ripgrep # grep searching with Telescope.
+brew install --cask neovide
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
