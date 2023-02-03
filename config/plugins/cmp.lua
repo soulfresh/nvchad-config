@@ -27,13 +27,6 @@ M = {
   mapping = {
     -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.close()
-      else
-        cmp.complete()
-      end
-    end, {"i", "s"}),
     ["<C-e>"] = nil,
     ["<Tab>"] = cmp.mapping(function(fallback)
       if require("luasnip").expand_or_jumpable() then
@@ -45,8 +38,8 @@ M = {
         copilot.accept()
       elseif has_words_before() then
         cmp.complete()
-      else
-        fallback()
+      -- else
+      --   fallback()
       end
     end, {
       "i",
@@ -59,6 +52,62 @@ M = {
       --   luasnip.jump(-1)
       else
         fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    ["<C-j>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif copilot.is_visible() then
+        copilot.next()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    ["<C-k>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif copilot.is_visible() then
+        copilot.prev()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    ["<C-l>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.close()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    -- My old version
+    -- ["<C-Space>"] = cmp.mapping(function()
+    --   if cmp.visible() then
+    --     cmp.close()
+    --   else
+    --     cmp.complete()
+    --   end
+    -- end, {"i", "s"}),
+    ["<C-Space>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.close()
+      elseif copilot.is_visible() then
+        copilot.dismiss()
+      else
+        cmp.complete()
+      -- else
+      --   fallback()
       end
     end, {
       "i",

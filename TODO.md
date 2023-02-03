@@ -4,6 +4,8 @@
 - Undo last autocomplete suggestion when in insert mode (ie. if you `<C-n>` to
   select an item, you should be able to revert back to your previous typing with
   a different binding)
+- `K` should be able to close the type info. We should also be able to trigger
+  the type hover in insert mode.
 - Undo copilot suggestion (ie. if you tab complete a copilot suggestion, you
   should be able to undo that easily without leaving insert mode)
 - [C-o/O] in insert mode

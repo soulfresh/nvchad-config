@@ -92,6 +92,18 @@ return {
 	-- Show git tree diffs in a dedicated tab page.
 	["sindrets/diffview.nvim"] = {
 		requires = "nvim-lua/plenary.nvim",
+    config = function()
+      print('setup diffview')
+      require("diffview").setup({
+        file_panel = {
+          listing_style = "list",             -- One of 'list' or 'tree'
+          tree_options = {                    -- Only applies when listing_style is 'tree'
+            flatten_dirs = true,              -- Flatten dirs that only contain one single dir
+            folder_statuses = "only_folded",  -- One of 'never', 'only_folded' or 'always'.
+          },
+        },
+      })
+    end
 	},
 
 	-- neogit
@@ -122,9 +134,9 @@ return {
 				suggestion = {
 					auto_trigger = true,
 					-- enabled = false
-          keymap = {
-            accept = "<C-,>",
-          }
+          -- keymap = {
+          --   accept = "<C-,>",
+          -- }
 				},
 				panel = {
 					auto_refresh = true,

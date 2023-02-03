@@ -24,6 +24,14 @@ M.disabled = {
 }
 
 M.general = {
+  i = {
+    ["<C-i>"] = {
+      function()
+        GetHighlightGroupUnderCursor()
+      end,
+      "Show Highlight: show the highlight group name under the cursor."
+    }
+  },
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
@@ -43,14 +51,12 @@ M.general = {
     -- TODO Only activate these in Neovide
     ["<C-=>"] = {
       function()
-        print("Zoom +")
         ChangeScaleFactor(1.25)
       end,
       "Zoom + (Neovide)",
     },
     ["<C-->"] = {
       function()
-        print('Zoom -')
         ChangeScaleFactor(1/1.25)
       end,
       "Zoom - (Neovide)",
@@ -83,6 +89,8 @@ M.general = {
 
     -- tabs
     ["<leader>ts"] = { ":tab split", "open current buffer in new tab"},
+    ["<D-]>"] = { ":tabnext", "Next tab" },
+    ["<D-[>"] = { ":tabprevious", "Previous tab" },
 
     -- window sizing/movement
     ["<Left>"] = { ":vertical resize -1<CR>", "resize window left"},

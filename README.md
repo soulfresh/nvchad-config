@@ -85,9 +85,19 @@ folder patterns can be configured in `config/plugins/project.lua`.
 
 When in insert mode, you should get an autocomplete menu. Use `<C-space>` in
 insert mode to open or close the dialog. When the dialog is open, use `<C-n/p>`
-to navigate to the next/previous items. You will also see Copilot suggestions
-written as ghost text after your cursor which you can accept using `<Tab>` (in
-insert mode).
+(or `<C-j/k>`) to navigate to the next/previous items. When you have an item
+selected, `<CR>` will select it.
+
+Additionally, you may also see Copilot suggestions written as ghost text after
+your cursor which you can accept using `<Tab>` (in insert mode). You can scroll
+to the next/previous Copilot suggestion using `<C-n/p>`. You can hide the
+Copilot suggestions with `<C-space>`. 
+
+If you have both the autocomplete window and copilot visible, the key commands
+for the autocomplete take precendence. If you actually want to interact with
+Copilot and ignore the autocomplete suggestions, use `<C-space>` once to hide
+the autocomplete so you can interact with Copilot. If you want to hide both
+the autocomplete and Copilot, type `<C-space>` twice.
 
 If you select an item marked "Snippet" in the autocomplete, it will populate the
 snippet code for you and place you in the first edit location for that snippet.
@@ -101,6 +111,39 @@ location. Repeat until there are no more edit locations.
 >   suggestion.
 > - Copilot suggestions and snippet navigation sometimes conflict. We should
 >   disable copilot while we are in a snippet.
+
+#### Cheatsheat
+
+- `<C-space>` toggle the autocomplete menu when in insert mode or hide the
+  Copilot suggestions if they are visible.
+- `<C-j/k>` cycle through the autocomplete or Copilot suggestions
+- `<C-n/p>` cycle through the autocomplete or Copilot suggestions
+- `<Tab>` accept the copilot ghost text suggestion
+
+### Working with code
+
+Code errors are displayed in the number gutter and as ghost text. You can jump
+between errors using `]d` (next diagnostic) and `[d` (previous diagnostic). This
+will show you the error message in a popup. Use `<leader>ca` (code action) to
+populate the command line with a list of autofix suggestions. Follow the
+instructions to fix the error.
+
+When hovered over any code, you can use `K` to show the type of that code. This
+is really useful if you need to debug Typescript errors.
+
+#### Cheatsheat
+
+- `]d` Go to the next error (diagnostic)
+- `[d` Go to the previous error (diabnostic)
+- `<leader>ca` Autofix an error (code action)
+- `K` to show code type info
+- `/` search file forwards (`n` and `p` to jump next/previous)
+- `?` search file backwards (`n` and `p` to jump next/previous in reverse)
+- `<leader>cc` to jump up one scope block level
+- `%` to jump to the matching surrounding character (ie. quote, paren, curly, etc.)
+- `zz` to center the code under your cursor
+- `}` go to the next empty line
+- `{` go to the previous empty line
 
 ### Working with Git
 
