@@ -4,6 +4,13 @@ return {
 	-- To remove a default plugin:
 	-- ["hrsh7th/cmp-path"] = false,
 
+	-- CMP (autocomplete menu)
+	["hrsh7th/nvim-cmp"] = {
+    override_options = function()
+      return require('custom.plugins.cmp')
+    end,
+  },
+
 	-- Telescope
 	["nvim-telescope/telescope.nvim"] = {
 		-- TODO Do I need this?
@@ -77,8 +84,7 @@ return {
 	["ahmedkhalf/project.nvim"] = {
 		after = "telescope.nvim",
 		config = function()
-			-- require('telescope').load_extension 'projects'
-			require("custom.plugins.project").setup()
+			return require("custom.plugins.project").setup()
 		end,
 	},
 
@@ -86,6 +92,18 @@ return {
 	-- Show git tree diffs in a dedicated tab page.
 	["sindrets/diffview.nvim"] = {
 		requires = "nvim-lua/plenary.nvim",
+    config = function()
+      print('setup diffview')
+      require("diffview").setup({
+        file_panel = {
+          listing_style = "list",             -- One of 'list' or 'tree'
+          tree_options = {                    -- Only applies when listing_style is 'tree'
+            flatten_dirs = true,              -- Flatten dirs that only contain one single dir
+            folder_statuses = "only_folded",  -- One of 'never', 'only_folded' or 'always'.
+          },
+        },
+      })
+    end
 	},
 
 	-- neogit
@@ -93,7 +111,15 @@ return {
 	["TimUntersberger/neogit"] = {
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
-			require("neogit").setup()
+			require("neogit").setup({
+				mappings = {
+					-- modify status buffer mappings
+					status = {
+						-- Close the neogit tab
+						["Q"] = "Close",
+					},
+				},
+			})
 		end,
 	},
 
@@ -105,17 +131,30 @@ return {
 		config = function()
 			require("copilot").setup({
 				-- Disable copilot suggestions UI because we will use CMP instead.
-				suggestion = { enabled = false },
-				panel = { enabled = false },
+				suggestion = {
+					auto_trigger = true,
+					-- enabled = false
+          -- keymap = {
+          --   accept = "<C-,>",
+          -- }
+				},
+				panel = {
+					auto_refresh = true,
+					-- enabled = false,
+				},
 			})
 		end,
 	},
 
-  -- Copilot in nvim-cmp window
-	["zbirenbaum/copilot-cmp"] = {
-		after = { "copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	},
+	-- Copilot in nvim-cmp window
+  -- TODO: This doesn't work yet.
+	-- ["zbirenbaum/copilot-cmp"] = {
+ --    -- after = 'copilot.lua',
+	-- 	after = { "copilot.lua" },
+	-- 	config = function()
+	-- 		require("copilot_cmp").setup({
+ --        method = "getCompletionsCycling",
+ --      })
+	-- 	end,
+	-- },
 }

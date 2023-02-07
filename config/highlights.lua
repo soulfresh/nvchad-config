@@ -14,7 +14,21 @@ M.override = {
 }
 
 M.add = {
-  NvimTreeOpenedFolderName = { fg = "green", bold = true },
+  NvimTreeOpenedFolderName = { 
+    -- fg = "green",
+    bold = true
+  },
+  DiffAdd = {
+    fg = "green",
+  },
+  -- a yellow might be more obvious than blue
+  DiffChange = {
+    fg = "yellow",
+  },
+  DiffText = {
+    bg = "one_bg2",
+    bold = false,
+  },
 }
 
 return M

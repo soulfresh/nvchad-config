@@ -6,7 +6,7 @@ require "custom.settings"
 local autocmd = vim.api.nvim_create_autocmd
 local autogrp = vim.api.nvim_create_augroup
 
-vim.g.copilot_assume_mapped = true
+-- vim.g.copilot_assume_mapped = true
 
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {
@@ -14,6 +14,7 @@ vim.g.copilot_assume_mapped = true
 --   command = "tabdo wincmd =",
 -- })
 
+-- Change the background color of the currently active buffer window.
 -- TODO Use NvChad correctly
 -- vim.cmd[[highlight ActiveWindow ctermbg=0 guibg=lightgrey]]
 -- vim.cmd[[highlight ActiveWindow guibg=#17252c]]

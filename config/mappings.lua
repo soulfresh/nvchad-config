@@ -24,6 +24,14 @@ M.disabled = {
 }
 
 M.general = {
+  i = {
+    ["<C-i>"] = {
+      function()
+        GetHighlightGroupUnderCursor()
+      end,
+      "Show Highlight: show the highlight group name under the cursor."
+    }
+  },
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
@@ -43,14 +51,12 @@ M.general = {
     -- TODO Only activate these in Neovide
     ["<C-=>"] = {
       function()
-        print("Zoom +")
         ChangeScaleFactor(1.25)
       end,
       "Zoom + (Neovide)",
     },
     ["<C-->"] = {
       function()
-        print('Zoom -')
         ChangeScaleFactor(1/1.25)
       end,
       "Zoom - (Neovide)",
@@ -83,6 +89,8 @@ M.general = {
 
     -- tabs
     ["<leader>ts"] = { ":tab split", "open current buffer in new tab"},
+    ["<D-]>"] = { ":tabnext", "Next tab" },
+    ["<D-[>"] = { ":tabprevious", "Previous tab" },
 
     -- window sizing/movement
     ["<Left>"] = { ":vertical resize -1<CR>", "resize window left"},
@@ -139,6 +147,18 @@ M.vimtree = {
 
 M.gitsigns = {
   n = {
+    ["<leader>cs"] = { "<cmd> Gitsigns stage_hunk <CR>", "Commits Stage: stage hunk at cursor" },
+    ["<leader>ch"] = {
+      function()
+        local gs = require('gitsigns')
+        gs.toggle_deleted(nil)
+        gs.toggle_word_diff(nil)
+        gs.toggle_linehl(nil)
+        gs.toggle_numhl(nil)
+      end,
+      "Commits Highlight: color the git changes in a file."
+    },
+    ["<leader>cd"] = { "<cmd> Gitsigns diffthis <CR>", "Commits Diff: diff unstaged lines"},
     ["]c"] = {
       function()
         if vim.wo.diff then
