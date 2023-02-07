@@ -21,7 +21,13 @@ All custom configuration is stored in the `config` folder and will be symlinked 
 
 Run `nvim` to start NvChad.
 
-### Uninstall
+## Packer
+https://github.com/wbthomason/packer.nvim
+
+To sync run `:PackerSync`. Exit out of nvim, launch nvim and run `:PackerSync`
+again. Everything should look good at that point.
+
+## Uninstall
 
 Run `./uninstall` to remove the NvChad symlinks and restore any previous nvim setup you had. It will not
 remove the NvChad repo clone that was checked out along side this repo. You can do that if you want.
