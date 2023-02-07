@@ -1,8 +1,10 @@
-# NeoVim customizations on top of NvChad
+# NeoVim customizations on top of NvChad (For Mac Users)
+
+## Prereqs
+- Use a Nerd Font in your terminal emulator. (Instructions below)
+- Make sure to delete this folder ~/.local/share/nvim on Linux/macOS or ~\AppData\Local\nvim and ~\AppData\Local\nvim-data on Windows.
 
 ## Setup
-
-TODO List out the NvChad prereqs here
 
 For the easiest setup clone this repo and then run `./install.sh`. This command will clone NvChad alongside
 this repo, symlink NvChad into your `.config/nvim` folder and backup your existing nvim configs.
@@ -19,10 +21,13 @@ All custom configuration is stored in the `config` folder and will be symlinked 
 
 Run `nvim` to start NvChad.
 
-## NerdFonts
-https://github.com/ronniedroid/getnf
+## Packer
+https://github.com/wbthomason/packer.nvim
 
-### Uninstall
+To sync run `:PackerSync`. Exit out of nvim, launch nvim and run `:PackerSync`
+again. Everything should look good at that point.
+
+## Uninstall
 
 Run `./uninstall` to remove the NvChad symlinks and restore any previous nvim setup you had. It will not
 remove the NvChad repo clone that was checked out along side this repo. You can do that if you want.
