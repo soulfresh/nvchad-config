@@ -42,15 +42,40 @@ iTerm under Preferences -> Profile -> Text.
 
 ## Keymaps
 
+Definitions:
+- `<leader>` = the "," character
+- `<D->` = the Command key
+- `<M->` = the Alt key on Mac (depending on how your terminal app is setup)
+- `<C->` = the Ctrl key
+
+Keymap help:
 - `<leader>tk` Search for a keymap
+- `<leader>` Shows keymaps help after 1 second
 
 ## Plugins
 
 - [NvChad Plugins](https://nvchad.com/features)
 - [Projects](#projects)
 
+### Files, Buffers and Misc
+
+- `;` (n) Enter command mode (no need to press the Shift key!)
+- `<D-s>` (n) Save all buffers
+- `<C-s>` (n) Save current buffer
+- `ss` (n) Horizontal split
+- `vv` (n) Vertical split
+
 ### Navigation
 
+- `H` (n) Jump to first non-blank character in line
+- `0` (n) Jump to first character in line
+- `L` (n) Jump to last non-blank character in line
+- `J` (n) Jump to bottom of file
+- `H` (n) Jump to top of file
+- `<D-h>` (n) Scroll left without moving cursor
+- `<D-l>` (n) Scroll right without moving cursor
+- `<D-k>` (n) Scroll up without moving cursor
+- `<D-j>` (n) Scroll down without moving cursor
 - `<leader>cc` Jump to the top of the current indent level
 
 ### Working with Projects
@@ -156,6 +181,11 @@ is really useful if you need to debug Typescript errors.
   Try `:Diffview<TAB>` to view available commands or `h: Diffivew` for help.
 - [NeoGit](https://github.com/TimUntersberger/neogit)
   An easy UI for performing Git commands. Visit GitHub for help.
+
+To quickly switch between your branches, use `<leader>gr` (Git bRanch) to show a
+list of available branches. Use `Tab` or `<C-n/p>` to select a branch and `<CR>`
+to switch to that branch. For more options, type `<Esc>` to enter normal mode
+and `g?` to show available commands at the bottom of the screen.
 
 When working in a file, the number column will show you unstaged file changes
 with a colored bar. Type `]c` and `[c` to navigate between changes in the file. You

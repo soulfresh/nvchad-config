@@ -38,6 +38,17 @@ M.mason = {
   },
 }
 
+M.nvterm = {
+  behavior = {
+    -- autoclose_on_quit = {
+    --   enabled = false,
+    --   confirm = true,
+    -- },
+    -- close_on_exit = true,
+    auto_insert = false,
+  },
+}
+
 M.nvimtree = {
   -- git support
   git = {
@@ -60,12 +71,16 @@ M.nvimtree = {
     },
   },
 
+  -- TODO use floating window
+  -- https://github.com/nvim-tree/nvim-tree.lua/issues/135#issuecomment-1288002079
+
   -- project support
-  sync_root_with_cwd = true,
-  respect_buf_cwd = true,
+  sync_root_with_cwd = false,
+  respect_buf_cwd = false,
   update_focused_file = {
     enable = true,
-    update_root = true
+    update_root = false,
+    ignore_list = {'node_modules'},
   },
 
 }

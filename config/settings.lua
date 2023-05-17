@@ -6,9 +6,10 @@ vim.g.neovide_input_macos_alt_is_meta = false
 -- Use an outline for the cursor when the window does not have focus
 vim.g.neovide_cursor_unfocused_outline_width = 0.125
 vim.g.neovide_fullscreen = true
+vim.g.neovide_cursor_vfx_mode = "sonicboom"
 vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_scroll_animation_length = 0.2
 vim.g.neovide_cursor_animation_length = 0.1
-vim.g.neovide_scroll_animation_length = 0.1
 vim.g.neovide_cursor_trail_size = 0.5
 
 -- Vim settings
@@ -31,3 +32,11 @@ vim.opt.whichwrap = "b,s"
 -- Snippets path relative to $MYVIMRC. You can use ~/ prefixed paths.
 -- See https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#loaders
 vim.g.luasnippets_path = "~/.config/nvim/lua/custom/snippets"
+
+-- Custom filetypes
+vim.filetype.add({
+  extension = {
+    -- Treat .pch files as C++ header files
+    pch = "cpp",
+  }
+})

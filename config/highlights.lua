@@ -20,13 +20,18 @@ M.add = {
   },
   DiffAdd = {
     fg = "green",
+    bg = "#f7ffd8",
   },
   -- a yellow might be more obvious than blue
   DiffChange = {
     fg = "yellow",
+    bg = "#ffffc3",
+  },
+  DiffDelete = {
+    bg = "#ffbcc5",
   },
   DiffText = {
-    bg = "one_bg2",
+    bg = "#ffffe6",
     bold = false,
   },
 }

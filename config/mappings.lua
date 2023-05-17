@@ -1,5 +1,9 @@
 local M = {}
 
+local function t(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 -- NEOVIDE
 vim.g.neovide_scale_factor = 1.0
 function ChangeScaleFactor(delta)
@@ -20,6 +24,9 @@ M.disabled = {
     -- This seems to be a typo in the NvChad config but I'm not sure.
     -- I prefer ]d and [d
     ["d]"] = "",
+    -- I'd prefer to use the `:NvChadUpdate` command so I don't accidentally
+    -- trrigger an update.
+    ["<leader>u"] = "",
   }
 }
 
@@ -30,9 +37,22 @@ M.general = {
         GetHighlightGroupUnderCursor()
       end,
       "Show Highlight: show the highlight group name under the cursor."
-    }
+    },
+    ["<C-O>"] = {
+      function()
+        t('<Up>')
+      end,
+      "Move cursor up one line"
+    },
+    ["<C-o>"] = {
+      function()
+        t('<Down>')
+      end,
+      "Move cursor down one line"
+    },
   },
   n = {
+    ["<D-s>"] = {":wa<CR>", "Save All"},
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
     -- This doesn't work because lua caches modules. There is a way to unload
@@ -48,7 +68,7 @@ M.general = {
     },
 
     -- Zoom
-    -- TODO Only activate these in Neovide
+    -- TODO Just use + and -
     ["<C-=>"] = {
       function()
         ChangeScaleFactor(1.25)
@@ -63,16 +83,27 @@ M.general = {
       { silent = false }
     },
 
+    -- Cursor movement
     -- NvChad maps gj/gk to j/k to work around navigating through wrapped lines
     -- but since I don't use line wrapping, I'm turning that off here.
     -- See core/mappings.lua for the original functionality.
-    ["j"] = { "j", "down"},
-    ["k"] = { "k", "up"},
+    ["j"] = { "j", "Line down"},
+    ["k"] = { "k", "Line up"},
+    -- This conflicts with "merge with line below"
+    -- ["J"] = { "gg", "Buffer bottom"},
+    -- This conflicts with the standard hover keybinding
+    -- ["K"] = { "G", "Buffer top"},
     -- Switch the jump to start/end of line and first/last blank character.
-    ["0"] = { "^", "go to first non-blank character in line"},
-    ["^"] = { "0", "go to first non-blank character in line"},
-    ["$"] = { "g_", "go to the last non-blank character in line"},
-    ["g_"] = { "$", "go to the last non-blank character in line"},
+    -- ["0"] = { "^", "go to first non-blank character in line"},
+    -- ["^"] = { "0", "go to first non-blank character in line"},
+    -- ["$"] = { "g_", "go to the last non-blank character in line"},
+    -- ["g_"] = { "$", "go to the last character in line (including whitespace)"},
+    ["H"] = { "^", "go to first non-blank character in line"},
+    ["L"] = { "g_", "go to the last non-blank character in line"},
+    ["<D-h>"] = {"zH", "scroll window to left edge"},
+    ["<D-l>"] = {"zL", "scroll window to right edge"},
+    ["<D-k>"] = {"<C-y>", "scroll window to right edge"},
+    ["<D-j>"] = {"<C-e>", "scroll window to left edge"},
 
     -- buffers
     ["Q"] = {
@@ -89,8 +120,8 @@ M.general = {
 
     -- tabs
     ["<leader>ts"] = { ":tab split", "open current buffer in new tab"},
-    ["<D-]>"] = { ":tabnext", "Next tab" },
-    ["<D-[>"] = { ":tabprevious", "Previous tab" },
+    ["<D-]>"] = { ":tabnext<CR>", "Next tab" },
+    ["<D-[>"] = { ":tabprevious<CR>", "Previous tab" },
 
     -- window sizing/movement
     ["<Left>"] = { ":vertical resize -1<CR>", "resize window left"},
@@ -109,6 +140,10 @@ M.general = {
     -- highlighting
     ["//"] = { "<cmd> noh <CR>", "no highlight" },
   },
+  v = {
+    ["H"] = { "^", "go to first non-blank character in line"},
+    ["L"] = { "g_", "go to the last non-blank character in line"},
+  }
 }
 
 M.lspconfig = {
@@ -125,7 +160,17 @@ M.lspconfig = {
         vim.diagnostic.goto_next()
       end,
       "goto prev",
-    }
+    },
+
+    ["T"] = {
+      function()
+        vim.lsp.buf.hover()
+      end,
+      "Tooltip: Show LSP tooltip",
+    },
+
+    -- TODO Would be better if we could use "gD" or "gi" but only in C++ files.
+    ["gh"] = {":ClangdSwitchSourceHeader<CR>", "Go To Header (C++)"},
   },
 }
 
@@ -162,6 +207,8 @@ M.gitsigns = {
     ["]c"] = {
       function()
         if vim.wo.diff then
+          -- This works if vim fugitive is not installed. Not sure how to get
+          -- them to work together.
           return "]c"
         end
         vim.schedule(function()
@@ -191,15 +238,11 @@ M.gitsigns = {
   }
 }
 
-M.neogit = {
-  n = {
-    ["<leader>gg"] = { "<cmd> Neogit <CR>", "Open Neogit Tab" },
-  }
-}
-
-local function t(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+-- M.neogit = {
+--   n = {
+--     ["<leader>gg"] = { "<cmd> Neogit <CR>", "Open Neogit Tab" },
+--   }
+-- }
 
 -- Clear a termina buffer:
 -- ======================
@@ -270,6 +313,7 @@ M.nvterm = {
     -- navigation in/out of terminal mode
     ["<Esc><Esc>"] = { "<C-\\><C-N>", "exit terminal mode"},
     ["<C-h>"] = { "<C-\\><C-N><C-w>h", "leave terminal left" },
+    ["<C-l>"] = { "<C-\\><C-N><C-w>l", "leave terminal right" },
     ["<C-j>"] = { "<C-\\><C-N><C-w>j", "leave terminal down" },
     ["<C-k>"] = { "<C-\\><C-N><C-w>k", "leave terminal up" },
 
@@ -309,8 +353,20 @@ end, { nargs = "*" })
 
 M.diffview = {
   n = {
-    ['<leader>gs'] = { "<cmd> DiffviewToggleStatus <cr>", "Toggle the Git status view"},
+    -- ['<leader>gs'] = { "<cmd> DiffviewToggleStatus <cr>", "Toggle the Git status view"},
     ['<leader>gh'] = { "<cmd> DiffviewToggleHistory <cr>", "Toggle the Git history view"},
+  }
+}
+
+M.fugitive = {
+  n = {
+    ['<leader>gs'] = { "<cmd> G <cr>", "Toggle the Git status view"},
+  }
+}
+
+M.undo = {
+  n = {
+    ["<leader>fu"] = { "<cmd> Telescope undo <cr>", "Find Undo: show undo history" },
   }
 }
 
